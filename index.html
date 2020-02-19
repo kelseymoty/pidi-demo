@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<!-- VIDEOS -->
+<div id="videos">
+    <!-- Introduction -->
+    <video id="video1">
+        <source src="assets/PiDi_1.mp4" type="video/mp4">
+    </video>
+    <video id="video2">
+        <source src="assets/PiDi_2a.mp4" type="video/mp4">
+    </video>
+    <video id="video3">
+        <source src="assets/PiDi_2b.mp4" type="video/mp4">
+    </video>
+    <video id="video4">
+        <source src="assets/PiDi_2c.mp4" type="video/mp4">
+    </video>
+    <video id="video5">
+        <source src="assets/PiDi_2d.mp4" type="video/mp4">
+    </video>
+    <video id="video6">
+        <source src="assets/PiDi_2e.mp4" type="video/mp4">
+    </video>
+    <!-- Trial 1 -->
+    <video id="trial1a">
+        <source src="assets/PiDi_3_1a_gg.mp4" type="video/mp4">
+    </video>
+    <video id="trial1b">
+        <source src="assets/PiDi_3_1b.mp4" type="video/mp4">
+    </video>
+    <video id="trial1c">
+        <source src="assets/PiDi_3_1c.mp4" type="video/mp4">
+    </video>
+    <video id="trial1d">
+        <source src="assets/PiDi_3_1d.mp4" type="video/mp4">
+    </video>
+    <!-- Trial 2 -->
+    <video id="trial2a">
+        <source src="assets/PiDi_3_2a_gg.mp4" type="video/mp4">
+    </video>
+    <video id="trial2b">
+        <source src="assets/PiDi_3_2b.mp4" type="video/mp4">
+    </video>
+    <video id="trial2c">
+        <source src="assets/PiDi_3_2d.mp4" type="video/mp4">
+    </video>
+    <video id="trial2d">
+        <source src="assets/PiDi_3_2c.mp4" type="video/mp4">
+    </video>
+    <!-- Trial 3 -->
+    <video id="trial3a">
+        <source src="assets/PiDi_3_3a_gg.mp4" type="video/mp4">
+    </video>
+    <video id="trial3b">
+        <source src="assets/PiDi_3_3b.mp4" type="video/mp4">
+    </video>
+    <video id="trial3c">
+        <source src="assets/PiDi_3_3d.mp4" type="video/mp4">
+    </video>
+    <video id="trial3d">
+        <source src="assets/PiDi_3_3c.mp4" type="video/mp4">
+    </video>
+    <!-- Trial 4 -->
+    <video id="trial4a">
+        <source src="assets/PiDi_3_4a_gg.mp4" type="video/mp4">
+    </video>
+    <video id="trial4b">
+        <source src="assets/PiDi_3_4b.mp4" type="video/mp4">
+    </video>
+    <video id="trial4c">
+        <source src="assets/PiDi_3_4c.mp4" type="video/mp4">
+    </video>
+    <video id="trial4d">
+        <source src="assets/PiDi_3_4d.mp4" type="video/mp4">
+    </video>
+    <!-- Pragmatic Task -->
+    <video id="p1">
+        <source src="assets/pragmatics1.mp4" type="video/mp4">
+    </video>
+    <video id="p2">
+        <source src="assets/pragmatics2.mp4" type="video/mp4">
+    </video>
+    <video id="p3">
+        <source src="assets/pragmatics3.mp4" type="video/mp4">
+    </video>
+    <video id="p4">
+        <source src="assets/pragmatics4.mp4" type="video/mp4">
+    </video>
+    <video id="p5">
+        <source src="assets/pragmatics5.mp4" type="video/mp4">
+    </video>
+    <video id="p6">
+        <source src="assets/pragmatics6.mp4" type="video/mp4">
+    </video>
+    <!-- End -->
+    <video id="end">
+        <source src="assets/end.mp4" type="video/mp4">
+    </video>
+</div>
+
+<button id='startButton' type="submit">Start demo</button>
+<button id='z1' class='response left' type="submit">Zarpies</button>
+<button id='g1' class='response right' type="submit">Gorps</button>
+<button id='z2' class='response left' type="submit">Zarpies</button>
+<button id='g2' class='response right' type="submit">Gorps</button>
+<button id='dummy1' class='invisible' type="submit">Left</button>
+<button id='dummy2' class='invisible' type="submit">Left</button>
+<button id='trial1_b1' class='invisible' type="submit">Right</button>
+<button id='trial1_b2' class='invisible' type="submit">Right</button>
+<button id='trial2_b1' class='invisible' type="submit">Right</button>
+<button id='trial2_b2' class='invisible' type="submit">Right</button>
+<button id='trial3_b1' class='invisible' type="submit">Left</button>
+<button id='trial3_b2' class='invisible' type="submit">Left</button>
+<button id='trial4_b1' class='invisible' type="submit">Right</button>
+<button id='trial4_b2' class='invisible' type="submit">Right</button>
+<button id='p1_b' class='invisible' type="submit">Right</button>
+<button id='p2_b' class='invisible' type="submit">Right</button>
+<button id='p3_b' class='invisible' type="submit">Right</button>
+<button id='p4_b' class='invisible' type="submit">Right</button>
+<button id='p5_b' class='invisible' type="submit">Right</button>
+<button id='p6_b' class='invisible' type="submit">Right</button>
+
+
+<script>
+    startButton.onclick = function () {
+        document.getElementById("video1").style.visibility = "visible";
+        document.getElementById("video1").play();
+        this.remove();
+    }
+
+// Introduction
+    video1.onended = function () { 
+        document.getElementById('video2').play();
+        document.getElementById('video2').style.visibility = 'visible';
+        this.remove()
+    }
+
+    video2.onended = function () { 
+        document.getElementById('z1').style.visibility = "visible";
+        document.getElementById('g1').style.visibility = "visible";
+    }
+
+    z1.onclick = function () {
+        document.getElementById('video3').style.visibility = "visible";
+        document.getElementById('video3').play();
+        document.getElementById('video2').remove();
+        document.getElementById('g1').remove();
+        this.remove()
+    }
+
+    g1.onclick = function () {
+        document.getElementById('video3').style.visibility = "visible";
+        document.getElementById('video3').play();
+        document.getElementById('video2').remove();
+        document.getElementById('z1').remove();
+        this.remove()
+    }
+
+    video3.onended = function () { 
+        document.getElementById('z2').style.visibility = "visible";
+        document.getElementById('g2').style.visibility = "visible";
+    }
+
+    z2.onclick = function () {
+        document.getElementById('video4').style.visibility = "visible";
+        document.getElementById('video4').play();
+        document.getElementById('video3').remove();
+        document.getElementById('g2').remove();
+        this.remove()
+    }
+
+    g2.onclick = function () {
+        document.getElementById('video4').style.visibility = "visible";
+        document.getElementById('video4').play();
+        document.getElementById('video3').remove();
+        document.getElementById('z2').remove();
+        this.remove()
+    }
+
+    video4.onended = function () { 
+        document.getElementById('dummy1').style.visibility = "visible";
+    }
+
+    dummy1.onclick = function () {
+        document.getElementById('video5').style.visibility = "visible";
+        document.getElementById('video5').play();
+        document.getElementById('video4').remove();
+        this.remove()
+    }
+
+    video5.onended = function () { 
+        document.getElementById('dummy2').style.visibility = "visible";
+    }
+
+    dummy2.onclick = function () {
+        document.getElementById('video6').style.visibility = "visible";
+        document.getElementById('video6').play();
+        document.getElementById('video5').remove();
+        this.remove()
+    }
+
+    video6.onended = function () { 
+        document.getElementById('trial1a').style.visibility = "visible";
+        document.getElementById('trial1a').play();
+        this.remove()
+    }
+
+// trial 1
+    trial1a.onended = function () { 
+        document.getElementById('trial1b').style.visibility = "visible";
+        document.getElementById('trial1b').play();
+        this.remove()
+    }
+
+    trial1b.onended = function () { 
+        document.getElementById('trial1c').style.visibility = "visible";
+        document.getElementById('trial1c').play();
+        this.remove()
+    }
+
+    trial1c.onended = function () { 
+        document.getElementById('trial1_b1').style.visibility = "visible";
+    }
+
+    trial1_b1.onclick = function () {
+        document.getElementById('trial1d').style.visibility = "visible";
+        document.getElementById('trial1d').play();
+        document.getElementById('trial1c').remove();
+        this.remove()
+    }
+
+    trial1d.onended = function () { 
+        document.getElementById('trial1_b2').style.visibility = "visible";
+    }
+
+    trial1_b2.onclick = function () {
+        document.getElementById('trial2a').style.visibility = "visible";
+        document.getElementById('trial2a').play();
+        document.getElementById('trial1d').remove();
+        this.remove()
+    }
+
+// trial 2
+    trial2a.onended = function () { 
+        document.getElementById('trial2b').style.visibility = "visible";
+        document.getElementById('trial2b').play();
+        this.remove()
+    }
+
+    trial2b.onended = function () { 
+        document.getElementById('trial2c').style.visibility = "visible";
+        document.getElementById('trial2c').play();
+        this.remove()
+    }
+
+    trial2c.onended = function () { 
+        document.getElementById('trial2_b1').style.visibility = "visible";
+    }
+
+    trial2_b1.onclick = function () {
+        document.getElementById('trial2d').style.visibility = "visible";
+        document.getElementById('trial2d').play();
+        document.getElementById('trial2c').remove();
+        this.remove()
+    }
+
+    trial2d.onended = function () { 
+        document.getElementById('trial2_b2').style.visibility = "visible";
+    }
+
+    trial2_b2.onclick = function () {
+        document.getElementById('trial3a').style.visibility = "visible";
+        document.getElementById('trial3a').play();
+        document.getElementById('trial2d').remove();
+        this.remove()
+    }
+
+// trial 3
+    trial3a.onended = function () { 
+        document.getElementById('trial3b').style.visibility = "visible";
+        document.getElementById('trial3b').play();
+        this.remove()
+    }
+
+    trial3b.onended = function () { 
+        document.getElementById('trial3c').style.visibility = "visible";
+        document.getElementById('trial3c').play();
+        this.remove()
+    }
+
+    trial3c.onended = function () { 
+        document.getElementById('trial3_b1').style.visibility = "visible";
+    }
+
+    trial3_b1.onclick = function () {
+        document.getElementById('trial3d').style.visibility = "visible";
+        document.getElementById('trial3d').play();
+        document.getElementById('trial3c').remove();
+        this.remove()
+    }
+
+    trial3d.onended = function () { 
+        document.getElementById('trial3_b2').style.visibility = "visible";
+    }
+
+    trial3_b2.onclick = function () {
+        document.getElementById('trial4a').style.visibility = "visible";
+        document.getElementById('trial4a').play();
+        document.getElementById('trial3d').remove();
+        this.remove()
+    }
+
+// trial 4
+    trial4a.onended = function () { 
+        document.getElementById('trial4b').style.visibility = "visible";
+        document.getElementById('trial4b').play();
+        this.remove()
+    }
+
+    trial4b.onended = function () { 
+        document.getElementById('trial4c').style.visibility = "visible";
+        document.getElementById('trial4c').play();
+        this.remove()
+    }
+
+    trial4c.onended = function () { 
+        document.getElementById('trial4_b1').style.visibility = "visible";
+    }
+
+    trial4_b1.onclick = function () {
+        document.getElementById('trial4d').style.visibility = "visible";
+        document.getElementById('trial4d').play();
+        document.getElementById('trial4c').remove();
+        this.remove()
+    }
+
+    trial4d.onended = function () { 
+        document.getElementById('trial4_b2').style.visibility = "visible";
+    }
+
+    trial4_b2.onclick = function () {
+        document.getElementById('p1').style.visibility = "visible";
+        document.getElementById('p1').play();
+        document.getElementById('trial4d').remove();
+        this.remove()
+    }
+
+// pragmatics
+// trial 1
+    p1.onended = function () { 
+        document.getElementById('p1_b').style.visibility = "visible";
+    }
+
+    p1_b.onclick = function () {
+        document.getElementById('p2').style.visibility = "visible";
+        document.getElementById('p2').play();
+        document.getElementById('p1').remove();
+        this.remove()
+    }
+
+// trial 2
+    p2.onended = function () { 
+        document.getElementById('p2_b').style.visibility = "visible";
+    }
+
+    p2_b.onclick = function () {
+        document.getElementById('p3').style.visibility = "visible";
+        document.getElementById('p3').play();
+        document.getElementById('p2').remove();
+        this.remove()
+    }
+
+// trial 3
+    p3.onended = function () { 
+        document.getElementById('p3_b').style.visibility = "visible";
+    }
+
+    p3_b.onclick = function () {
+        document.getElementById('p4').style.visibility = "visible";
+        document.getElementById('p4').play();
+        document.getElementById('p3').remove();
+        this.remove()
+    }
+
+// trial 4
+    p4.onended = function () { 
+        document.getElementById('p4_b').style.visibility = "visible";
+    }
+
+    p4_b.onclick = function () {
+        document.getElementById('p5').style.visibility = "visible";
+        document.getElementById('p5').play();
+        document.getElementById('p4').remove();
+        this.remove()
+    }
+
+// trial 5
+    p5.onended = function () { 
+        document.getElementById('p5_b').style.visibility = "visible";
+    }
+
+    p5_b.onclick = function () {
+        document.getElementById('p6').style.visibility = "visible";
+        document.getElementById('p6').play();
+        document.getElementById('p5').remove();
+        this.remove()
+    }
+
+// trial 6
+    p6.onended = function () { 
+        document.getElementById('p6_b').style.visibility = "visible";
+    }
+
+    p6_b.onclick = function () {
+        document.getElementById('end').style.visibility = "visible";
+        document.getElementById('end').play();
+        document.getElementById('p6').remove();
+        this.remove()
+    }
+
+</script>
+
+</body>
+</html>
