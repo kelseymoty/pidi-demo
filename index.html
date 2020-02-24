@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -104,324 +105,80 @@
     </video>
 </div>
 
-<button id='startButton' type="submit">Start demo</button>
-<button id='z1' class='response left' type="submit">Zarpies</button>
-<button id='g1' class='response right' type="submit">Gorps</button>
-<button id='z2' class='response left' type="submit">Zarpies</button>
-<button id='g2' class='response right' type="submit">Gorps</button>
-<button id='dummy1' class='invisible' type="submit">Left</button>
-<button id='dummy2' class='invisible' type="submit">Left</button>
-<button id='trial1_b1' class='invisible' type="submit">Right</button>
-<button id='trial1_b2' class='invisible' type="submit">Right</button>
-<button id='trial2_b1' class='invisible' type="submit">Right</button>
-<button id='trial2_b2' class='invisible' type="submit">Right</button>
-<button id='trial3_b1' class='invisible' type="submit">Left</button>
-<button id='trial3_b2' class='invisible' type="submit">Left</button>
-<button id='trial4_b1' class='invisible' type="submit">Right</button>
-<button id='trial4_b2' class='invisible' type="submit">Right</button>
-<button id='p1_b' class='invisible' type="submit">Right</button>
-<button id='p2_b' class='invisible' type="submit">Right</button>
-<button id='p3_b' class='invisible' type="submit">Right</button>
-<button id='p4_b' class='invisible' type="submit">Right</button>
-<button id='p5_b' class='invisible' type="submit">Right</button>
-<button id='p6_b' class='invisible' type="submit">Right</button>
+<div id="title">
+    <h2>This is a demonstration for Moty & Rhodes (2019)</h2>
+</div>
+
+<div id="startButtons"> 
+    <button id='study1' type="submit">Study 1</button>
+    <button id='study2' type="submit">Study 2</button>
+    <button id='study3' type="submit">Study 3</button>
+</div>
+
+<button id='left' class='response' type="submit">Zarpies</button>
+<button id='right' class='response' type="submit">Gorps</button>
+<button id='invisible' class='invisible' type="submit">Nothing</button>
 
 
 <script>
-    startButton.onclick = function () {
-        document.getElementById("video1").style.visibility = "visible";
-        document.getElementById("video1").play();
+    var video_count = 0;
+    
+    var study1_videos = ["video1", "video2", "video3", "video4","video5", "video6", 
+    "trial1a", "trial1b", "trial1c", "trial1d","trial2a", "trial2b", "trial2d", "trial2c",
+    "trial3a", "trial3b", "trial3d", "trial3c","trial4a", "trial4b", "trial4c", "trial4d",
+    "p1", "p2", "p3", "p4", "p5", "p6", "end"
+    ]
+    var study1_buttons = ["response","response","response","invisible","invisible", "none",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "invisible","invisible","invisible","invisible","invisible","invisible","end"
+    ]
+
+    function run(){
+        console.log("we are on video", video_count);
+        document.getElementById(study1_videos[video_count]).style.visibility = "visible";
+        document.getElementById(study1_videos[video_count]).play();
+        document.getElementById(study1_videos[video_count]).onended = function () {
+            displayButtons();
+        }
+    };
+
+    function displayButtons(){
+        if (study1_buttons[video_count] == "response"){
+            var buttons = document.querySelectorAll('.response')
+            buttons.forEach((value) => {
+                value.style.visibility = "visible";
+                value.onclick = function(){
+                    video_count++;
+                    buttons.forEach((value) => {
+                        value.style.visibility = "hidden";
+                    })
+                    run();
+                }
+            })
+        } else if (study1_buttons[video_count] == "invisible"){
+            console.log(document.querySelector('.invisible'));
+            document.querySelector('.invisible').style.visibility = "visible";
+            document.querySelector('.invisible').onclick = function(){
+                video_count++;
+                document.querySelector('.invisible').style.visibility = "hidden";
+                run();
+            }
+        } else if (study1_buttons[video_count] == "end") {
+            location.reload();
+        } else {
+            video_count++;
+            run();
+        }
+        
+    };
+
+    study1.onclick = function () {
+        run();
+        document.getElementById("study2").remove();
+        document.getElementById("study3").remove();
+        document.getElementById("title").remove();
         this.remove();
-    }
-
-// Introduction
-    video1.onended = function () { 
-        document.getElementById('video2').play();
-        document.getElementById('video2').style.visibility = 'visible';
-        this.remove()
-    }
-
-    video2.onended = function () { 
-        document.getElementById('z1').style.visibility = "visible";
-        document.getElementById('g1').style.visibility = "visible";
-    }
-
-    z1.onclick = function () {
-        document.getElementById('video3').style.visibility = "visible";
-        document.getElementById('video3').play();
-        document.getElementById('video2').remove();
-        document.getElementById('g1').remove();
-        this.remove()
-    }
-
-    g1.onclick = function () {
-        document.getElementById('video3').style.visibility = "visible";
-        document.getElementById('video3').play();
-        document.getElementById('video2').remove();
-        document.getElementById('z1').remove();
-        this.remove()
-    }
-
-    video3.onended = function () { 
-        document.getElementById('z2').style.visibility = "visible";
-        document.getElementById('g2').style.visibility = "visible";
-    }
-
-    z2.onclick = function () {
-        document.getElementById('video4').style.visibility = "visible";
-        document.getElementById('video4').play();
-        document.getElementById('video3').remove();
-        document.getElementById('g2').remove();
-        this.remove()
-    }
-
-    g2.onclick = function () {
-        document.getElementById('video4').style.visibility = "visible";
-        document.getElementById('video4').play();
-        document.getElementById('video3').remove();
-        document.getElementById('z2').remove();
-        this.remove()
-    }
-
-    video4.onended = function () { 
-        document.getElementById('dummy1').style.visibility = "visible";
-    }
-
-    dummy1.onclick = function () {
-        document.getElementById('video5').style.visibility = "visible";
-        document.getElementById('video5').play();
-        document.getElementById('video4').remove();
-        this.remove()
-    }
-
-    video5.onended = function () { 
-        document.getElementById('dummy2').style.visibility = "visible";
-    }
-
-    dummy2.onclick = function () {
-        document.getElementById('video6').style.visibility = "visible";
-        document.getElementById('video6').play();
-        document.getElementById('video5').remove();
-        this.remove()
-    }
-
-    video6.onended = function () { 
-        document.getElementById('trial1a').style.visibility = "visible";
-        document.getElementById('trial1a').play();
-        this.remove()
-    }
-
-// trial 1
-    trial1a.onended = function () { 
-        document.getElementById('trial1b').style.visibility = "visible";
-        document.getElementById('trial1b').play();
-        this.remove()
-    }
-
-    trial1b.onended = function () { 
-        document.getElementById('trial1c').style.visibility = "visible";
-        document.getElementById('trial1c').play();
-        this.remove()
-    }
-
-    trial1c.onended = function () { 
-        document.getElementById('trial1_b1').style.visibility = "visible";
-    }
-
-    trial1_b1.onclick = function () {
-        document.getElementById('trial1d').style.visibility = "visible";
-        document.getElementById('trial1d').play();
-        document.getElementById('trial1c').remove();
-        this.remove()
-    }
-
-    trial1d.onended = function () { 
-        document.getElementById('trial1_b2').style.visibility = "visible";
-    }
-
-    trial1_b2.onclick = function () {
-        document.getElementById('trial2a').style.visibility = "visible";
-        document.getElementById('trial2a').play();
-        document.getElementById('trial1d').remove();
-        this.remove()
-    }
-
-// trial 2
-    trial2a.onended = function () { 
-        document.getElementById('trial2b').style.visibility = "visible";
-        document.getElementById('trial2b').play();
-        this.remove()
-    }
-
-    trial2b.onended = function () { 
-        document.getElementById('trial2c').style.visibility = "visible";
-        document.getElementById('trial2c').play();
-        this.remove()
-    }
-
-    trial2c.onended = function () { 
-        document.getElementById('trial2_b1').style.visibility = "visible";
-    }
-
-    trial2_b1.onclick = function () {
-        document.getElementById('trial2d').style.visibility = "visible";
-        document.getElementById('trial2d').play();
-        document.getElementById('trial2c').remove();
-        this.remove()
-    }
-
-    trial2d.onended = function () { 
-        document.getElementById('trial2_b2').style.visibility = "visible";
-    }
-
-    trial2_b2.onclick = function () {
-        document.getElementById('trial3a').style.visibility = "visible";
-        document.getElementById('trial3a').play();
-        document.getElementById('trial2d').remove();
-        this.remove()
-    }
-
-// trial 3
-    trial3a.onended = function () { 
-        document.getElementById('trial3b').style.visibility = "visible";
-        document.getElementById('trial3b').play();
-        this.remove()
-    }
-
-    trial3b.onended = function () { 
-        document.getElementById('trial3c').style.visibility = "visible";
-        document.getElementById('trial3c').play();
-        this.remove()
-    }
-
-    trial3c.onended = function () { 
-        document.getElementById('trial3_b1').style.visibility = "visible";
-    }
-
-    trial3_b1.onclick = function () {
-        document.getElementById('trial3d').style.visibility = "visible";
-        document.getElementById('trial3d').play();
-        document.getElementById('trial3c').remove();
-        this.remove()
-    }
-
-    trial3d.onended = function () { 
-        document.getElementById('trial3_b2').style.visibility = "visible";
-    }
-
-    trial3_b2.onclick = function () {
-        document.getElementById('trial4a').style.visibility = "visible";
-        document.getElementById('trial4a').play();
-        document.getElementById('trial3d').remove();
-        this.remove()
-    }
-
-// trial 4
-    trial4a.onended = function () { 
-        document.getElementById('trial4b').style.visibility = "visible";
-        document.getElementById('trial4b').play();
-        this.remove()
-    }
-
-    trial4b.onended = function () { 
-        document.getElementById('trial4c').style.visibility = "visible";
-        document.getElementById('trial4c').play();
-        this.remove()
-    }
-
-    trial4c.onended = function () { 
-        document.getElementById('trial4_b1').style.visibility = "visible";
-    }
-
-    trial4_b1.onclick = function () {
-        document.getElementById('trial4d').style.visibility = "visible";
-        document.getElementById('trial4d').play();
-        document.getElementById('trial4c').remove();
-        this.remove()
-    }
-
-    trial4d.onended = function () { 
-        document.getElementById('trial4_b2').style.visibility = "visible";
-    }
-
-    trial4_b2.onclick = function () {
-        document.getElementById('p1').style.visibility = "visible";
-        document.getElementById('p1').play();
-        document.getElementById('trial4d').remove();
-        this.remove()
-    }
-
-// pragmatics
-// trial 1
-    p1.onended = function () { 
-        document.getElementById('p1_b').style.visibility = "visible";
-    }
-
-    p1_b.onclick = function () {
-        document.getElementById('p2').style.visibility = "visible";
-        document.getElementById('p2').play();
-        document.getElementById('p1').remove();
-        this.remove()
-    }
-
-// trial 2
-    p2.onended = function () { 
-        document.getElementById('p2_b').style.visibility = "visible";
-    }
-
-    p2_b.onclick = function () {
-        document.getElementById('p3').style.visibility = "visible";
-        document.getElementById('p3').play();
-        document.getElementById('p2').remove();
-        this.remove()
-    }
-
-// trial 3
-    p3.onended = function () { 
-        document.getElementById('p3_b').style.visibility = "visible";
-    }
-
-    p3_b.onclick = function () {
-        document.getElementById('p4').style.visibility = "visible";
-        document.getElementById('p4').play();
-        document.getElementById('p3').remove();
-        this.remove()
-    }
-
-// trial 4
-    p4.onended = function () { 
-        document.getElementById('p4_b').style.visibility = "visible";
-    }
-
-    p4_b.onclick = function () {
-        document.getElementById('p5').style.visibility = "visible";
-        document.getElementById('p5').play();
-        document.getElementById('p4').remove();
-        this.remove()
-    }
-
-// trial 5
-    p5.onended = function () { 
-        document.getElementById('p5_b').style.visibility = "visible";
-    }
-
-    p5_b.onclick = function () {
-        document.getElementById('p6').style.visibility = "visible";
-        document.getElementById('p6').play();
-        document.getElementById('p5').remove();
-        this.remove()
-    }
-
-// trial 6
-    p6.onended = function () { 
-        document.getElementById('p6_b').style.visibility = "visible";
-    }
-
-    p6_b.onclick = function () {
-        document.getElementById('end').style.visibility = "visible";
-        document.getElementById('end').play();
-        document.getElementById('p6').remove();
-        this.remove()
     }
 
 </script>
