@@ -7,179 +7,121 @@
 </head>
 
 <body>
-<!-- VIDEOS -->
 <div id="videos">
-    <!-- Introduction -->
-    <video id="video1">
-        <source src="assets/PiDi_1.mp4" type="video/mp4">
-    </video>
-    <video id="video2">
-        <source src="assets/PiDi_2a.mp4" type="video/mp4">
-    </video>
-    <video id="video3">
-        <source src="assets/PiDi_2b.mp4" type="video/mp4">
-    </video>
-    <video id="video4">
-        <source src="assets/PiDi_2c.mp4" type="video/mp4">
-    </video>
-    <video id="video5">
-        <source src="assets/PiDi_2d.mp4" type="video/mp4">
-    </video>
-    <video id="video6">
-        <source src="assets/PiDi_2e.mp4" type="video/mp4">
-    </video>
-    <!-- Trial 1 -->
-    <video id="trial1a">
-        <source src="assets/PiDi_3_1a_gg.mp4" type="video/mp4">
-    </video>
-    <video id="trial1b">
-        <source src="assets/PiDi_3_1b.mp4" type="video/mp4">
-    </video>
-    <video id="trial1c">
-        <source src="assets/PiDi_3_1c.mp4" type="video/mp4">
-    </video>
-    <video id="trial1d">
-        <source src="assets/PiDi_3_1d.mp4" type="video/mp4">
-    </video>
-    <!-- Trial 2 -->
-    <video id="trial2a">
-        <source src="assets/PiDi_3_2a_gg.mp4" type="video/mp4">
-    </video>
-    <video id="trial2b">
-        <source src="assets/PiDi_3_2b.mp4" type="video/mp4">
-    </video>
-    <video id="trial2c">
-        <source src="assets/PiDi_3_2d.mp4" type="video/mp4">
-    </video>
-    <video id="trial2d">
-        <source src="assets/PiDi_3_2c.mp4" type="video/mp4">
-    </video>
-    <!-- Trial 3 -->
-    <video id="trial3a">
-        <source src="assets/PiDi_3_3a_gg.mp4" type="video/mp4">
-    </video>
-    <video id="trial3b">
-        <source src="assets/PiDi_3_3b.mp4" type="video/mp4">
-    </video>
-    <video id="trial3c">
-        <source src="assets/PiDi_3_3d.mp4" type="video/mp4">
-    </video>
-    <video id="trial3d">
-        <source src="assets/PiDi_3_3c.mp4" type="video/mp4">
-    </video>
-    <!-- Trial 4 -->
-    <video id="trial4a">
-        <source src="assets/PiDi_3_4a_gg.mp4" type="video/mp4">
-    </video>
-    <video id="trial4b">
-        <source src="assets/PiDi_3_4b.mp4" type="video/mp4">
-    </video>
-    <video id="trial4c">
-        <source src="assets/PiDi_3_4c.mp4" type="video/mp4">
-    </video>
-    <video id="trial4d">
-        <source src="assets/PiDi_3_4d.mp4" type="video/mp4">
-    </video>
-    <!-- Pragmatic Task -->
-    <video id="p1">
-        <source src="assets/PiDi_4.mp4" type="video/mp4">
-    </video>
-    <video id="p2">
-        <source src="assets/PiDi_5a_1.mp4" type="video/mp4">
-    </video>
-    <video id="p3">
-        <source src="assets/PiDi_5b_1.mp4" type="video/mp4">
-    </video>
-    <video id="p4">
-        <source src="assets/PiDi_5c_1.mp4" type="video/mp4">
-    </video>
-    <video id="p5">
-        <source src="assets/PiDi_5d_1.mp4" type="video/mp4">
-    </video>
-    <video id="p6">
-        <source src="assets/PiDi_5e_1.mp4" type="video/mp4">
-    </video>
-    <!-- End -->
-    <video id="end">
-        <source src="assets/PiDi_5f.mp4" type="video/mp4">
-    </video>
 </div>
 
-<div id="title">
-    <h2>This is a demonstration for Moty & Rhodes (2019)</h2>
-</div>
+<div id="startPage">
+    <div id="title">
+        <h2>This is a demonstration for Moty & Rhodes (2019)</h2>
+    </div>
 
-<div id="startButtons"> 
-    <button id='study1' type="submit">Study 1</button>
-    <button id='study2' type="submit">Study 2</button>
-    <button id='study3' type="submit">Study 3</button>
+    <div id="startButtons"> 
+        <button id='study1' type="submit" onclick="startStudy(this)">Study 1</button>
+        <button id='study2' type="submit" onclick="startStudy(this)">Study 2</button>
+        <button id='study3' type="submit" onclick="startStudy(this)">Study 3</button>
+    </div>
 </div>
 
 <button id='left' class='response' type="submit">Zarpies</button>
 <button id='right' class='response' type="submit">Gorps</button>
 <button id='invisible' class='invisible' type="submit">Nothing</button>
 
-
 <script>
     var video_count = 0;
+    var study = 0;
     
-    var study1_videos = ["video1", "video2", "video3", "video4","video5", "video6", 
-    "trial1a", "trial1b", "trial1c", "trial1d","trial2a", "trial2b", "trial2d", "trial2c",
-    "trial3a", "trial3b", "trial3d", "trial3c","trial4a", "trial4b", "trial4c", "trial4d",
-    "p1", "p2", "p3", "p4", "p5", "p6", "end"
-    ]
-    var study1_buttons = ["response","response","response","invisible","invisible", "none",
+    var study1_videos = ["PiDi_1", "PiDi_2a", "PiDi_2b", "PiDi_2c", "PiDi_2d", "PiDi_2e",
+    "PiDi_3_1a_gg", "PiDi_3_1b", "PiDi_3_1c", "PiDi_3_1d", "PiDi_3_2a_gg", "PiDi_3_2b", "PiDi_3_2d", "PiDi_3_2c",
+    "PiDi_3_3a_gg", "PiDi_3_3b", "PiDi_3_3d", "PiDi_3_3d", "PiDi_3_4a_gg", "PiDi_3_4b", "PiDi_3_4c", "PiDi_3_4d",
+    "PiDi_4", "PiDi_5a_1", "PiDi_5b_1", "PiDi_5c_1", "PiDi_5d_1", "PiDi_5e_1", "PiDi_5f"]
+
+    var study1_buttons = ["none","response","response","invisible","invisible", "none",
     "none","none","invisible","invisible","none","none","invisible","invisible",
     "none","none","invisible","invisible","none","none","invisible","invisible",
     "invisible","invisible","invisible","invisible","invisible","invisible","end"
     ]
 
-    function run(){
-        console.log("we are on video", video_count);
-        document.getElementById(study1_videos[video_count]).style.visibility = "visible";
-        document.getElementById(study1_videos[video_count]).play();
-        document.getElementById(study1_videos[video_count]).onended = function () {
+    var study2_videos = ["PiDi_1", "PiDi_2a", "PiDi_2b", "PiDi_2ca", "PiDi_2cb", "PiDi_2d", "PiDi_2e",
+    "PiDi_3_1a_gg", "PiDi_3_1b", "PiDi_3_1c", "PiDi_3_1d", "PiDi_3_2a_gg", "PiDi_3_2b", "PiDi_3_2d", "PiDi_3_2c",
+    "PiDi_3_3a_gg", "PiDi_3_3b", "PiDi_3_3d", "PiDi_3_3d", "PiDi_3_4a_gg", "PiDi_3_4b", "PiDi_3_4c", "PiDi_3_4d",
+    "PiDi_4", "PiDi_5a_1", "PiDi_5b_1", "PiDi_5c_1", "PiDi_5d_1", "PiDi_5e_1", "PiDi_5f"]
+
+    var study2_buttons = ["none","response","response","none","invisible","invisible", "none",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "invisible","invisible","invisible","invisible","invisible","invisible","end"
+    ]
+
+    var study3_videos = ["video1", "video2", "video3", "video7", "video8", "video5", "video6", 
+    "trial1a", "trial1b", "trial1c", "trial1d","trial2a", "trial2b", "trial2d", "trial2c",
+    "trial3a", "trial3b", "trial3d", "trial3c","trial4a", "trial4b", "trial4c", "trial4d",
+    "p1", "p2", "p3", "p4", "p5", "p6", "end"
+    ]
+
+    var study3_buttons = ["none","response","response","none","invisible","invisible", "none",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "none","none","invisible","invisible","none","none","invisible","invisible",
+    "invisible","invisible","invisible","invisible","invisible","invisible","end"
+    ]
+
+    var videos = [study1_videos, study2_videos, study3_videos]
+    var buttons = [study1_buttons, study2_buttons, study3_buttons]
+
+    function playVideo(){
+        if (video_count > 0) {
+            document.getElementById(videos[study][video_count-1]).remove();
+        }
+        document.getElementById(videos[study][video_count]).style.visibility = "visible";
+        document.getElementById(videos[study][video_count]).play();
+        document.getElementById(videos[study][video_count]).onended = function () {
             displayButtons();
         }
     };
 
     function displayButtons(){
-        if (study1_buttons[video_count] == "response"){
-            var buttons = document.querySelectorAll('.response')
-            buttons.forEach((value) => {
+        if (buttons[study][video_count] == "response"){
+            var bttns = document.querySelectorAll('.response')
+            bttns.forEach((value) => {
                 value.style.visibility = "visible";
                 value.onclick = function(){
                     video_count++;
-                    buttons.forEach((value) => {
+                    bttns.forEach((value) => {
                         value.style.visibility = "hidden";
                     })
-                    run();
+                    playVideo();
                 }
             })
-        } else if (study1_buttons[video_count] == "invisible"){
-            console.log(document.querySelector('.invisible'));
+        } else if (buttons[study][video_count] == "invisible"){
             document.querySelector('.invisible').style.visibility = "visible";
             document.querySelector('.invisible').onclick = function(){
                 video_count++;
                 document.querySelector('.invisible').style.visibility = "hidden";
-                run();
+                playVideo();
             }
-        } else if (study1_buttons[video_count] == "end") {
+        } else if (buttons[study][video_count] == "end") {
             location.reload();
         } else {
             video_count++;
-            run();
+            playVideo();
         }
         
     };
 
-    study1.onclick = function () {
-        run();
-        document.getElementById("study2").remove();
-        document.getElementById("study3").remove();
-        document.getElementById("title").remove();
-        this.remove();
+    function makeVideos(){
+        videos[study].forEach((vids) => {
+            vid = document.createElement("VIDEO");
+            vid.id = vids;
+            vid.src = "assets/" + vids + ".mp4";
+            document.getElementById("videos").appendChild(vid);
+        })
+        playVideo();
     }
+
+    function startStudy(bttn){
+        study = bttn.id.match(/\d+/)[0] - 1;
+        makeVideos();
+        document.getElementById("startPage").remove();
+    } 
 
 </script>
 

@@ -20,7 +20,7 @@ video {
 div#videos {
     position: relative;
     height: 95vh;
-    width: 95vw;
+    width: 100vw;
     top: 0;
     left: 0; 
     visibility: hidden;
