@@ -5,6 +5,19 @@ body {
     font-family: "Source Sans Pro";
 }
 
+h3 {
+    text-align: left;
+}
+
+a {
+    color: lightblue;
+}
+
+a:hover {
+    color: #63b4cf;
+}
+
+
 button {
     font-family: "Source Sans Pro";
 }
@@ -28,8 +41,8 @@ div#videos {
 
 div#title {
     position: absolute;
-    width: 100%;
-    top: 10%;
+    width: 80%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -39,7 +52,7 @@ div#startButtons {
     position: absolute;
     width: 100%;
     height: 50%;
-    top: 50%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -49,11 +62,11 @@ div#startButtons {
 /* Buttons */
 button:hover {
     outline: 0px;
-    background-color: lightblue;
+    background-color: #63b4cf;
 }
 
 #study1, #study2, #study3 {
-    background-color: #ddd;
+    background-color: lightblue;
     border-radius: 25px;
     color: black;
     border-width: 0px;
@@ -69,7 +82,7 @@ button#study1:hover,
 button#study2:hover,
 button#study3:hover {
     outline: 0px;
-    background-color: lightblue;
+    background-color: #63b4cf;
 }
 
 .response {
@@ -110,4 +123,28 @@ button#study3:hover {
     opacity: 0;
     visibility: hidden;
 }
+
+.invisible2 {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#invisible_correct {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 100%;
+}
+
+#invisible_wrong {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 100%;
+}
+
 

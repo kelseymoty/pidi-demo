@@ -12,7 +12,14 @@
 
 <div id="startPage">
     <div id="title">
-        <h2>This is a demonstration for Moty & Rhodes (2019)</h2>
+        <h1>This is a demonstration for Moty & Rhodes (2019)<br> <i style="color: #63b4cf;">The unintended consequences of the things we say: <br>
+            What generics communicate to children about unmentioned categories</i></h1><br>
+        <h3>Study 1 and Study 2 compared whether children heard either generic ("Zarpies are good at...") or specific language ("This zarpie is good at...") to introduce
+            the target property. The demos show the generic condition across both studies.<br><br>
+            Study 3 compared whether the generic was communicated by a knowledgeable or an unknowledgable speaker. The demo shows the unknowledgable speaker condition.<br><br>
+            The full paper can be found <a href=https://psyarxiv.com/zkjyr target="_blank">here</a>, and the scripts and 
+            materials for the studies can be found <a href="osf.io/5nzpe/" target="_blank">here</a>.
+        </h3>
     </div>
 
     <div id="startButtons"> 
@@ -25,6 +32,8 @@
 <button id='left' class='response' type="submit">Zarpies</button>
 <button id='right' class='response' type="submit">Gorps</button>
 <button id='invisible' class='invisible' type="submit">Nothing</button>
+<button id='invisible_correct' class='invisible2' type="submit">Correct</button>
+<button id='invisible_wrong' class='invisible2' type="submit">Wrong</button>
 
 <script>
     var video_count = 0;
@@ -52,31 +61,57 @@
     "invisible","invisible","invisible","invisible","invisible","invisible","end"
     ]
 
-    var study3_videos = ["video1", "video2", "video3", "video7", "video8", "video5", "video6", 
-    "trial1a", "trial1b", "trial1c", "trial1d","trial2a", "trial2b", "trial2d", "trial2c",
-    "trial3a", "trial3b", "trial3d", "trial3c","trial4a", "trial4b", "trial4c", "trial4d",
-    "p1", "p2", "p3", "p4", "p5", "p6", "end"
+    var study3_videos = [
+    // "animaltask1", "animaltask2", "animaltask3", "animaltask4",
+    // "introduction_nk1", "introduction_nk2", "introduction_nk3", 
+    "manipulationcheck1", "manipulationcheck2",  "manipulation_transition_nk",
+    "pizza_zarpie_nk", "pizza_zarpie", "pizza_gorp", "paint_zarpie_nk", "paint_zarpie", "paint_gorp", 
+    "transition1_nk", "photo_zarpie_nk", "photo_zarpie", "photo_gorp", "piano_zarpie_nk", "piano_zarpie", "piano_gorp", 
+    "pragmatics1", "pragmatics2", "pragmatics3", "pragmatics4", "pragmatics5", "pragmatics6", "end"
     ]
 
-    var study3_buttons = ["none","response","response","none","invisible","invisible", "none",
-    "none","none","invisible","invisible","none","none","invisible","invisible",
-    "none","none","invisible","invisible","none","none","invisible","invisible",
+    var study3_buttons = [
+    // "invisible","invisible","invisible","none",
+    // "invisible", "invisible", "none", 
+    "invisible2", "invisible2", "none", 
+    "none","invisible","invisible","none","invisible","invisible",
+    "none","none","invisible","invisible","none","invisible","invisible",
     "invisible","invisible","invisible","invisible","invisible","invisible","end"
     ]
 
     var videos = [study1_videos, study2_videos, study3_videos]
     var buttons = [study1_buttons, study2_buttons, study3_buttons]
 
-    function playVideo(){
-        if (video_count > 0) {
+    function playVideo(param){
+        console.log(param);
+        if (video_count > 0 & param != "clean") {
             document.getElementById(videos[study][video_count-1]).remove();
         }
+
         document.getElementById(videos[study][video_count]).style.visibility = "visible";
         document.getElementById(videos[study][video_count]).play();
         document.getElementById(videos[study][video_count]).onended = function () {
             displayButtons();
         }
+
     };
+
+    function playConditionalVideo(param){
+        console.log("we entered conditional");
+        var vid = document.createElement("VIDEO");
+        vid.id =  document.getElementById(videos[study][video_count]).id + "_nk_" + param;
+        vid.src = "assets/" + document.getElementById(videos[study][video_count]).id + "_nk_" + param + ".mp4";
+        document.getElementById("videos").appendChild(vid);
+        document.getElementById(vid.id).style.visibility = "visible";
+        document.getElementById(videos[study][video_count]).remove();
+        document.getElementById(vid.id).play();
+        document.getElementById(vid.id).onended = function () {
+            video_count++;
+            console.log("this is the vid to remove", vid.id);
+            document.getElementById(vid.id).remove();
+            playVideo("clean");
+        }
+    }
 
     function displayButtons(){
         if (buttons[study][video_count] == "response"){
@@ -97,6 +132,26 @@
                 video_count++;
                 document.querySelector('.invisible').style.visibility = "hidden";
                 playVideo();
+            }
+        } else if (buttons[study][video_count] == "invisible2"){
+            var bttns = document.querySelectorAll('.invisible2');
+            bttns.forEach((value) => {
+                value.style.visibility = "visible";
+            })
+            document.getElementById('invisible_correct').onclick = function(){
+                console.log("we are inside correct", document.querySelectorAll('.invisible2'));
+                var bttns = document.querySelectorAll('.invisible2');
+                bttns.forEach((value) => {
+                        value.style.visibility = "hidden";
+                    })
+                playConditionalVideo("correct");
+            }
+            document.getElementById('invisible_wrong').onclick = function(){
+                var bttns = document.querySelectorAll('.invisible2');
+                bttns.forEach((value) => {
+                        value.style.visibility = "hidden";
+                })
+                playConditionalVideo("wrong");
             }
         } else if (buttons[study][video_count] == "end") {
             location.reload();
