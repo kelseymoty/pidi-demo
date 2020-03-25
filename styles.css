@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
 /* General CSS */
 body {
     overflow: hidden; 
     margin: 0px;
-    font-family: "Source Sans Pro";
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 h3 {
@@ -19,7 +21,7 @@ a:hover {
 
 
 button {
-    font-family: "Source Sans Pro";
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 video {
